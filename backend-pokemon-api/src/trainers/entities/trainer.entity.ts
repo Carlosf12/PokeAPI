@@ -16,17 +16,17 @@ export class Trainer {
   password: string;
 
   @Column({ nullable: true })
-  trainerName: string;
+  trainerName?: string;
 
   @Column({ nullable: true })
-  favoritePokemon: string;
+  favoritePokemon?: string;
 
   @Column({ nullable: true })
-  location: string;
+  location?: string;
 
   @Column({ nullable: true })
-  bio: string;
+  bio?: string;
 
   @Column({ nullable: true })
-  badgeCount: number;
+  badgeCount?: number;
 }

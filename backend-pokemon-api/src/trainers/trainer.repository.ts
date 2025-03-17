@@ -18,5 +18,9 @@ export class TrainerRepository{
         return this.trainerRepository.findOne({where: { id }})
     }
 
-
+    async createTrainer(trainer: Trainer): Promise<Trainer> {
+        const newTrainer = await this.trainerRepository.create(trainer)
+        await this.trainerRepository.save(trainer)
+        return this.trainerRepository.findOne({ where: { email: trainer.email}})
+    }
 }

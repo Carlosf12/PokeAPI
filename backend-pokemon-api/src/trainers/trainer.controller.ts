@@ -1,4 +1,4 @@
-import { Controller , Get, Param, Request} from "@nestjs/common";
+import { Controller , Get, Param, Post, Request} from "@nestjs/common";
 import { Request as ExpressRequest } from 'express'
 import { TrainerService } from "./trainer.service";
 
