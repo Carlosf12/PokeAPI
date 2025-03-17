@@ -25,7 +25,7 @@ export class AuthService {
         await this.trainerRepository.createTrainer(trainerEntity)
         const { password, confirmPassword, ...trainerWithoutPassword } = newTrainer
         return {
-            success: 'Trainer added successfully:',
+            success: 'Trainer created successfully:',
             trainerWithoutPassword,
         };
     }
