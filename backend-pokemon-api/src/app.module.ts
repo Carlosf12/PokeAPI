@@ -3,6 +3,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import typeorm from './config/typeorm.config'; 
 import { TrainerModule } from './trainers/trainer.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -15,7 +16,8 @@ import { TrainerModule } from './trainers/trainer.module';
       useFactory: async (configService: ConfigService) =>
         configService.get('typeorm'),
     }),
-    TrainerModule, 
+    TrainerModule,
+    AuthModule 
   ],
   controllers: [],
   providers: [],
