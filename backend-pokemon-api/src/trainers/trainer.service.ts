@@ -10,4 +10,8 @@ export class TrainerService {
     async getTrainers(){
         return this.trainerRepository.getTrainers()
     }
+
+    async getTrainerById(id: string) {
+        return this.trainerRepository.getTrainerById(id)
+    }
 }

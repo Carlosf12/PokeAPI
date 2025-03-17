@@ -13,4 +13,10 @@ export class TrainerRepository{
     async getTrainers(): Promise<Trainer[]>{
         return this.trainerRepository.find()
     }
+
+    async getTrainerById(id: string): Promise<Trainer> {
+        return this.trainerRepository.findOne({where: { id }})
+    }
+
+
 }

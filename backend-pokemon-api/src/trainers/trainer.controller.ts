@@ -1,4 +1,4 @@
-import { Controller , Get, Request} from "@nestjs/common";
+import { Controller , Get, Param, Request} from "@nestjs/common";
 import { Request as ExpressRequest } from 'express'
 import { TrainerService } from "./trainer.service";
 
@@ -13,5 +13,10 @@ export class TrainerController {
     @Get()
     async getTrainers(@Request() req: ExpressRequest,) {
         return this.trainerService.getTrainers()
+    }
+
+    @Get(':id')
+    async getTrainerById(@Param('id') id: string){
+        return this.trainerService.getTrainerById(id)
     }
 }
