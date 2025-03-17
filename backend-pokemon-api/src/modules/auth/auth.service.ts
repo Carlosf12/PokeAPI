@@ -1,8 +1,8 @@
 import { BadRequestException, Injectable, UnauthorizedException } from '@nestjs/common';
 import * as bcrypt from 'bcrypt';
-import { CreateTrainerDto } from 'src/trainers/dtos/create.trainer.dto';
-import { Trainer } from 'src/trainers/entities/trainer.entity';
-import { TrainerRepository } from 'src/trainers/trainer.repository';
+import { CreateTrainerDto } from 'src/modules/trainers/dtos/create.trainer.dto';
+import { Trainer } from 'src/modules/trainers/entities/trainer.entity';
+import { TrainerRepository } from 'src/modules/trainers/trainer.repository';
 
 @Injectable()
 export class AuthService {

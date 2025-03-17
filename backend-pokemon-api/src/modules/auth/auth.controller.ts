@@ -1,6 +1,6 @@
 import { Controller, Post, Body, BadRequestException } from '@nestjs/common';
 import { AuthService } from './auth.service';
-import { CreateTrainerDto } from 'src/trainers/dtos/create.trainer.dto';
+import { CreateTrainerDto } from 'src/modules/trainers/dtos/create.trainer.dto';
 
 @Controller('auth')
 export class AuthController {
