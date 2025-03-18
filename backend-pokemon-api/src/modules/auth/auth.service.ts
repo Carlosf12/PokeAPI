@@ -18,10 +18,14 @@ export class AuthService {
         }
 
         const trainerEntity = new Trainer()
-        trainerEntity.email = newTrainer.email
         trainerEntity.username = newTrainer.username
-        trainerEntity.trainerName = newTrainer.trainerName
+        trainerEntity.email = newTrainer.email
         trainerEntity.password = hashedPassword
+        trainerEntity.trainerName = newTrainer.trainerName
+        trainerEntity.favoritePokemon = newTrainer.favoritePokemon
+        trainerEntity.location = newTrainer.location
+        trainerEntity.bio = newTrainer.bio
+        trainerEntity.badgeCount = newTrainer.badgeCount
         await this.trainerRepository.createTrainer(trainerEntity)
         const { password, confirmPassword, ...trainerWithoutPassword } = newTrainer
         return {
