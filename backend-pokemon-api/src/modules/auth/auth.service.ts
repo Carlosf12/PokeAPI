@@ -3,7 +3,6 @@ import * as bcrypt from 'bcrypt';
 import { CreateTrainerDto } from 'src/modules/trainers/dtos/create.trainer.dto';
 import { Trainer } from 'src/modules/trainers/entities/trainer.entity';
 import { TrainerRepository } from 'src/modules/trainers/trainer.repository';
-import { SignInDto } from '../trainers/dtos/signIn.trainer.dto';
 
 @Injectable()
 export class AuthService {
@@ -34,28 +33,6 @@ export class AuthService {
             trainerWithoutPassword,
         };
     }
-
-    async signIn(signInDto: SignInDto) {
-        const { email, password } = signInDto;
-        const trainer = await this.trainerRepository.getTrainerByEmail(email);
-    
-        if (!trainer) {
-          throw new UnauthorizedException('Invalid credentials');
-        }
-    
-        const isPasswordValid = await bcrypt.compare(password, trainer.password);
-    
-        if (!isPasswordValid) {
-          throw new UnauthorizedException('Invalid credentials');
-        }
-    
-        const { password: trainerPassword, ...trainerWithoutPassword } = trainer; 
-    
-        return {
-          success: 'Trainer signed in successfully',
-          trainerWithoutPassword 
-        }
-      }
 
 
 }
