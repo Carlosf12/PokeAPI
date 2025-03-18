@@ -20,7 +20,11 @@ export class TrainerRepository{
 
     async createTrainer(trainer: Trainer): Promise<Trainer> {
         const newTrainer = await this.trainerRepository.create(trainer)
-        await this.trainerRepository.save(trainer)
+        await this.trainerRepository.save(newTrainer)
         return this.trainerRepository.findOne({ where: { email: trainer.email}})
+    }
+
+    async getTrainerByEmail(email: string): Promise<Trainer | undefined> {
+        return this.trainerRepository.findOne({ where: { email } });
     }
 }
