@@ -23,4 +23,9 @@ export class TrainerRepository{
         await this.trainerRepository.save(trainer)
         return this.trainerRepository.findOne({ where: { email: trainer.email}})
     }
+
+    async getTrainerByEmail(email: string): Promise<Trainer | undefined> {
+        return this.trainerRepository.findOne({ where: { email } });
+    }
+
 }
