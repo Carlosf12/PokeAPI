@@ -3,6 +3,7 @@ import * as bcrypt from 'bcrypt';
 import { CreateTrainerDto } from 'src/modules/trainers/dtos/create.trainer.dto';
 import { Trainer } from 'src/modules/trainers/entities/trainer.entity';
 import { TrainerRepository } from 'src/modules/trainers/trainer.repository';
+import { SignInDto } from '../trainers/dtos/signIn.trainer.dto';
 
 @Injectable()
 export class AuthService {
