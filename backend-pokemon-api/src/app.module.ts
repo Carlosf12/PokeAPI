@@ -4,6 +4,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import typeorm from './config/typeorm.config'; 
 import { TrainerModule } from './modules/trainers/trainer.module';
 import { AuthModule } from './modules/auth/auth.module';
+import { PokemonModule } from './modules/pokemon/pokemon.module';
 
 @Module({
   imports: [
@@ -17,7 +18,8 @@ import { AuthModule } from './modules/auth/auth.module';
         configService.get('typeorm'),
     }),
     TrainerModule,
-    AuthModule 
+    AuthModule,
+    PokemonModule 
   ],
   controllers: [],
   providers: [],
