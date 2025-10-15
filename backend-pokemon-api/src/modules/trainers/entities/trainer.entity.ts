@@ -1,14 +1,16 @@
 import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { OneToMany } from 'typeorm';
+import { CaughtPokemon } from '../../pokemon/entities/caught-pokemon.entity';
 
 @Entity()
 export class Trainer {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column({unique: true})
+  @Column({ unique: true })
   username: string;
 
-  @Column({unique: true})
+  @Column({ unique: true })
   email: string;
 
   @Column()
@@ -28,4 +30,7 @@ export class Trainer {
 
   @Column({ nullable: true })
   badgeCount?: number;
+
+  @OneToMany(() => CaughtPokemon, (caughtPokemon) => caughtPokemon.trainer)
+  caughtPokemon: CaughtPokemon[];
 }
