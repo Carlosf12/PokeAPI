@@ -1,4 +1,5 @@
 import { IsString, IsEmail, IsOptional, IsNumber, IsNotEmpty } from 'class-validator';
+import { Match } from 'src/common/decorators/match.decorator';
 
 export class CreateTrainerDto {
   @IsNotEmpty()
@@ -15,7 +16,8 @@ export class CreateTrainerDto {
 
   @IsNotEmpty()
   @IsString()
-  confirmPassword: string
+  @Match('password', { message: 'Passwords do not match' })
+  confirmPassword: string;
 
   @IsOptional()
   @IsString()
