@@ -1,15 +1,14 @@
 import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
-import { v4 as uuid } from 'uuid'; 
 
 @Entity()
 export class Trainer {
   @PrimaryGeneratedColumn('uuid')
-  id: string = uuid();
+  id: string;
 
-  @Column()
+  @Column({unique: true})
   username: string;
 
-  @Column()
+  @Column({unique: true})
   email: string;
 
   @Column()

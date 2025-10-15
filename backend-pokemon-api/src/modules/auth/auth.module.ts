@@ -1,15 +1,29 @@
 import { Module } from '@nestjs/common';
+import { JwtModule } from '@nestjs/jwt';
+import { PassportModule } from '@nestjs/passport';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 import { AuthService } from './auth.service';
-import { TrainerRepository } from 'src/modules/trainers/trainer.repository';
-import { Trainer } from 'src/modules/trainers/entities/trainer.entity';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { TrainerService } from 'src/modules/trainers/trainer.service';
-import { TrainerModule } from 'src/modules/trainers/trainer.module';
 import { AuthController } from './auth.controller';
+import { JwtStrategy } from './jwt.strategy';
+import { TrainerModule } from 'src/modules/trainers/trainer.module';
 
 @Module({
-  imports: [TrainerModule, TypeOrmModule.forFeature([Trainer])],
-  providers: [AuthService, TrainerService, TrainerRepository],
+  imports: [
+    PassportModule,
+    TrainerModule, // This already provides TrainerService and TrainerRepository
+    JwtModule.registerAsync({
+      imports: [ConfigModule],
+      useFactory: async (configService: ConfigService) => ({
+        secret: configService.get<string>('JWT_SECRET') || 'your-secret-key-change-in-production',
+        signOptions: { 
+          expiresIn: '24h',
+        },
+      }),
+      inject: [ConfigService],
+    }),
+  ],
+  providers: [AuthService, JwtStrategy], 
   controllers: [AuthController],
+  exports: [AuthService, JwtModule],
 })
 export class AuthModule {}
